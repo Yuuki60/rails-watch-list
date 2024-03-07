@@ -1,0 +1,25 @@
+<div class="banner" style="background-image: url('https://img.pixers.pics/pho_wat(s3:700/FO/57/99/97/93/700_FO57999793_ddba593c0fcb41e2ebdf0cafa9716d6c.jpg,700,673,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,623,jpg)/posters-red-seats-in-dark-cinema-theater.jpg.jpg')">
+  <div class="text-center">
+    <h1>Save any kind of movies</h1>
+    <p>Classic</p>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>My lists</h1>
+    <%= link_to "Create a movie list", new_list_path, class: "btn btn-primary" %>
+  </div>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4 mb-4">
+        <%= link_to list_path(list) do %>
+          <div class="card-category" style="background-image: url('https://play-lh.googleusercontent.com/kX5EOqCjlO0kHfQxelaTEgRlCpIXSEjop0M-VDDTsTqSm5VZvEEJ0gEXNeLqDid_2g=w240-h480-rw');">
+            <%= list.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<hr>

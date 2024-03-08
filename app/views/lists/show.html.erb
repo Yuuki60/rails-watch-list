@@ -1,9 +1,8 @@
-<div class="banner" style="background: url('https://play-lh.googleusercontent.com/kX5EOqCjlO0kHfQxelaTEgRlCpIXSEjop0M-VDDTsTqSm5VZvEEJ0gEXNeLqDid_2g=w240-h480-rw')">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : "https://play-lh.googleusercontent.com/kX5EOqCjlO0kHfQxelaTEgRlCpIXSEjop0M-VDDTsTqSm5VZvEEJ0gEXNeLqDid_2g" %>')">
   <div class="container text-center">
     <h1>Classic movies</h1>
   </div>
 </div>
-
 <div class="container">
   <div class="row mt-4">
     <div class="d-flex justify-content-end mb-3">
@@ -12,7 +11,7 @@
   </div>
   <hr>
   <div class="row">
-      <% @list.bookmarks.each do |bookmark| %>
+    <% @list.bookmarks.each do |bookmark| %>
       <div class="col-md-6 mb-4">
         <div class="card">
           <img src="<%= bookmark.movie.poster_url %>" class="poster">
@@ -20,8 +19,8 @@
             <h2 class="card-title"><%= bookmark.movie.title %> ● <%= bookmark.movie.rating %> <i class="fas fa-star text-warning"></i></h2>
             <p class="card-text"><%= bookmark.movie.overview %></p>
             <div>
-            <i class="fa-solid fa-quote-left"></i>
-               <%= bookmark.comment %>
+              <i class="fa-solid fa-quote-left"></i>
+              <%= bookmark.comment %>
             </div>
             <%= link_to "Delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
           </div>
@@ -29,4 +28,14 @@
       </div>
     <% end %>
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Last Review</h3>
+      <% @list.reviews.each do |review| %>
+        <p><%= review.comment %> - <%= review.rating %></p>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <%= render "reviews/form", list: @list, review: @review %>
+    </div>
+  </div>
